@@ -62,7 +62,7 @@ bbb.speak.apply(aaa);
 
 
 /*
-Explicit binding allows us to override the doug portion of the object.
+Explicit binding allows us to override the doug or larry portion of the object. Technically it's the this value.
 
 
 */
