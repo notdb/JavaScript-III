@@ -62,8 +62,6 @@ function CharacterStats(charAttributes) {
   this.healthPoints = charAttributes.healthPoints;
 }
 
-
-
 CharacterStats.prototype.takeDamage = function() {
   return `${this.name} took damage`;
 }
@@ -109,6 +107,88 @@ console.log(www2.takeDamage());
   * should inherit takeDamage() from CharacterStats
 */
  
+function Villain(attributes) {
+  Humanoid.call(this, attributes);
+  this.catchPhrase = attributes.catchPhrase;
+}
+
+Villain.prototype = Object.create(Humanoid.prototype);
+
+Villain.prototype.slashSlash = function(person, damage) {
+  //new HP
+  let personHP = person.healthPoints-damage;
+  // set persons HP
+  if (personHP <= 0) {
+    return `${this.name} slashes ${person.name} for ${damage} damage. ${person.name} is knocked out.`;
+} else {
+    person.healthPoints = personHP;
+    return `${this.name} slashes ${person.name} for ${damage} damage. ${person.name} has ${personHP} left`;
+}
+}
+
+Villain.prototype.speak = function () {
+  return `${this.name} yells ${this.catchPhrase}`
+}
+
+const mrVillain = new Villain({
+  createdAt: new Date(),
+  dimensions: {
+    length: 2,
+    width: 1,
+    height: 1,
+  },
+  healthPoints: 5,
+  name: 'Bruce',
+  team: 'Mage Guild',
+  weapons: [
+    'Staff of Shamalama',
+  ], 
+  language: 'Common Tongue',
+  catchPhrase: 'up, up, and beyond'
+})
+
+
+function Hero(attributes) {
+  Humanoid.call(this, attributes);
+  this.catchPhrase = attributes.catchPhrase;
+}
+
+Hero.prototype = Object.create(Humanoid.prototype);
+
+Hero.prototype.slashSlash = function(person, damage) {
+  //new HP
+  let personHP = person.healthPoints-damage;
+  // set persons HP
+  if (personHP <= 0) {
+    return `${this.name} slashes ${person.name} for ${damage} damage. ${person.name} is knocked out.`;
+} else {
+    person.healthPoints = personHP;
+    return `${this.name} slashes ${person.name} for ${damage} damage. ${person.name} has ${personHP} left`;
+}
+}
+
+Hero.prototype.speak = function () {
+  return `${this.name} yells ${this.catchPhrase}`
+}
+
+const mrHero = new Hero({
+  createdAt: new Date(),
+  dimensions: {
+    length: 2,
+    width: 1,
+    height: 1,
+  },
+  healthPoints: 5,
+  name: 'Bruce',
+  team: 'Mage Guild',
+  weapons: [
+    'Staff of Shamalama',
+  ], 
+  language: 'Common Tongue',
+  catchPhrase: 'something goes here'
+})
+
+
 /*
   * Inheritance chain: GameObject -> CharacterStats -> Humanoid
   * Instances of Humanoid should have all of the same properties as CharacterStats and GameObject.
